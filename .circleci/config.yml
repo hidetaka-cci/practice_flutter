@@ -20,7 +20,23 @@ jobs:
           name: Build iOS app  
           command: flutter build ios --release --no-codesign  
   
-  build-android:  
+  build-android-vm:  
+    executor:  
+      name: android/android_machine  
+      tag: "2026.02.1"
+      resource_class: medium
+    steps:  
+      - checkout  
+      - flutter/install_sdk_and_pub:  
+          version: "3.38.9"  
+          app_dir: .  
+      - flutter/install_android_gradle_dependencies:  
+          app_dir: .  
+      - run:  
+          name: Build Android APK  
+          command: flutter build apk --release  
+          working_directory: .  
+  build-android-docker:  
     executor:  
       name: android/android_docker
       tag: "2026.02.1"
@@ -43,4 +59,5 @@ workflows:
   build:  
     jobs:  
       - build-ios  
-      - build-android
+      - build-android-vm
+      - build-android-docker
