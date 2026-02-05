@@ -27,8 +27,6 @@ jobs:
       - flutter/install_sdk_and_pub:  
           version: "3.38.9"  
           app_dir: .  
-      - flutter/install_android_gradle_dependencies:  
-          app_dir: android  
       - run:  
           name: Build Android APK  
           command: flutter build apk --release  
@@ -43,8 +41,6 @@ jobs:
       - flutter/install_sdk_and_pub:  
           version: "3.38.9"  
           app_dir: .  
-      - flutter/install_android_gradle_dependencies:  
-          app_dir: android  
       - run:  
           name: Build Android APK  
           command: flutter build apk --release  
