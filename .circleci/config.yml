@@ -13,9 +13,6 @@ jobs:
       - flutter/install_sdk_and_pub:  
           version: "3.38.9"  
           app_dir: .  
-      - flutter/install_ios_pod:  
-          repo_update: true  
-          app_dir: .  
       - run:  
           name: Build iOS app  
           command: flutter build ios --release --no-codesign  
