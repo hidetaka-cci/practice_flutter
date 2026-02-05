@@ -24,7 +24,6 @@ jobs:
     executor:  
       name: android/android_machine  
       tag: "2026.02.1"
-      resource_class: large
     steps:  
       - checkout  
       - flutter/install_sdk_and_pub:  
