@@ -1,0 +1,46 @@
+version: 2.1  
+orbs:  
+  flutter: circleci/flutter@3.0.0 # 最新版を指定  
+  android: circleci/android@3.2.0  
+  
+jobs:  
+  build-ios:  
+    macos:  
+      xcode: "26.2.0"
+    resource_class: m4pro.medium 
+    steps:  
+      - checkout  
+      - flutter/install_sdk_and_pub:  
+          version: "3.38.9"  
+          app_dir: .  
+      - flutter/install_ios_pod:  
+          repo_update: true  
+          app_dir: .  
+      - run:  
+          name: Build iOS app  
+          command: flutter build ios --release --no-codesign  
+  
+  build-android:  
+    executor:  
+      name: android/android_docker
+      tag: "2026.02.1"
+      resource_class: 2xlarge
+      #name: android/android_machine  
+      #tag: '2024.11.1'  
+    steps:  
+      - checkout  
+      - flutter/install_sdk_and_pub:  
+          version: "3.38.9"  
+          app_dir: .  
+      - flutter/install_android_gradle_dependencies:  
+          app_dir: .  
+      - run:  
+          name: Build Android APK  
+          command: flutter build apk --release  
+          working_directory: .  
+  
+workflows:  
+  build:  
+    jobs:  
+      - build-ios  
+      - build-android
