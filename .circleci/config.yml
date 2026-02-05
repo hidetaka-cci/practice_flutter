@@ -31,7 +31,7 @@ jobs:
           version: "3.38.9"  
           app_dir: .  
       - flutter/install_android_gradle_dependencies:  
-          app_dir: .  
+          app_dir: android  
       - run:  
           name: Build Android APK  
           command: flutter build apk --release  
@@ -47,7 +47,7 @@ jobs:
           version: "3.38.9"  
           app_dir: .  
       - flutter/install_android_gradle_dependencies:  
-          app_dir: .  
+          app_dir: android  
       - run:  
           name: Build Android APK  
           command: flutter build apk --release  
